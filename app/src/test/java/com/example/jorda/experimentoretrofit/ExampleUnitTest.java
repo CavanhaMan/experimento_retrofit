@@ -1,4 +1,4 @@
-package com.man.cavanha.navigationdrawer;
+package com.example.jorda.experimentoretrofit;
 
 import org.junit.Test;
 
