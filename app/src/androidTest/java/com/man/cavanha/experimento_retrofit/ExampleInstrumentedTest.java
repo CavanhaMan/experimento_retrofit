@@ -1,4 +1,4 @@
-package com.man.cavanha.experimento_retrofit;
+package com.man.cavanha.navigationdrawer;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.man.cavanha.experimento_retrofit", appContext.getPackageName());
+        assertEquals("com.man.cavanha.navigationdrawer", appContext.getPackageName());
     }
 }

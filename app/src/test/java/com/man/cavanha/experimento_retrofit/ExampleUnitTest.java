@@ -1,4 +1,4 @@
-package com.man.cavanha.experimento_retrofit;
+package com.man.cavanha.navigationdrawer;
 
 import org.junit.Test;
 
