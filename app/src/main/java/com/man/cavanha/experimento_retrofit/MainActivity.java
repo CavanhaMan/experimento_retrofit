@@ -18,10 +18,26 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dl = (DrawerLayout) findViewById(R.id.activity_main);
+        t = new ActionBarDrawerToggle(this, dl, R.string.abrir, R.string.fechar);
+
+        dl.addDrawerListener(t);
+        t.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nv = (NavigationView) findViewById(R.id.nv);
+        nv.setNavigationItemSelectedListener(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -35,6 +51,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    // Responde a eventos do hamburger
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (t.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -42,18 +66,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
+    // Responde a eventos do menu da gaveta de navegação
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        switch (id) {
+            case R.id.conta:
+                Toast.makeText(MainActivity.this, "Minha conta", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.config:
+                Toast.makeText(MainActivity.this, "Configuração", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.carrinho:
+                Toast.makeText(MainActivity.this, "Meu carrinho de compras", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.listanomes:
+                Toast.makeText(MainActivity.this, "Listagem de pessoas", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,ActivityPadrao.class));
+                break;
+            default:
+                return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 }
